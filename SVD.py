@@ -46,5 +46,28 @@ def svd(M):
         sigma[i][i] = Ulist[i][0]**0.5
     return U,sigma,V
         
+ 
+def svd_retained_energy(M):
+    U,sigma,V = svd(M)
+    diag = np.sum(np.diagonal(sigma)**2)   
+    ninety = .9*(diag)
+    singulars = np.diagonal(sigma)
+    for i in range(len(singulars)-1,0,-1):
+        if(diag - singulars[i]**2 < ninety):
+            break
+        else:
+            diag = diag - singulars[i]**2
+            
+            
+    sigma = sigma[0:i+1,0:i+1]
+    U = U[::,0:i+1]
+    V = V[0:i+1,::]
+    return U,sigma,V
+
+
+    
+#svd_retained_energy(data.M)
+    
+        
     
 
