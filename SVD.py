@@ -10,8 +10,8 @@ from numpy import linalg as l
 import numpy as np
 #def svd(M):
     
-def get_list(M):
-    lmda,eig_vector = l.eig(M)
+def get_list(M_symmetric):
+    lmda,eig_vector = l.eig(M_symmetric)
     lst = []
     for i in range(len(lmda)):
         evect = eig_vector[:,i]
@@ -19,7 +19,8 @@ def get_list(M):
     
     lst = sorted(lst,key=lambda x: x[0],reverse=True)
     for i in lst:
-        i[1] = i[1].real
+        #i[1] = i[1].real
+        i[1] = np.real(i[1])
         i[0] = round(i[0],2)
     return lst
     
@@ -62,6 +63,8 @@ def svd_retained_energy(M):
     sigma = sigma[0:i+1,0:i+1]
     U = U[::,0:i+1]
     V = V[0:i+1,::]
+    #print(diag)
+    #print(np.sum(np.diagonal(U)))
     return U,sigma,V
 
 
