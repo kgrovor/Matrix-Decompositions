@@ -16,11 +16,12 @@ def get_list(M_symmetric):
     for i in range(len(lmda)):
         evect = eig_vector[:,i]
         lst.append([lmda[i],evect])
-    
     lst = sorted(lst,key=lambda x: x[0],reverse=True)
     for i in lst:
         #i[1] = i[1].real
         i[1] = np.real(i[1])
+        if i[1][0] < 0:
+            i[1][0] = i[1][0]* -1
         i[0] = round(i[0],2)
     return lst
     
