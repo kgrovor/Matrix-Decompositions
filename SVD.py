@@ -5,6 +5,8 @@ Created on Thu Oct 19 12:17:26 2017
 
 @author: kshitij
 """
+#To compare to actual SVD run "u,s,v = l.svd(M.todense())"
+
 import data
 from numpy import linalg as l
 import numpy as np
@@ -20,9 +22,13 @@ def get_list(M_symmetric):
     for i in lst:
         #i[1] = i[1].real
         i[1] = np.real(i[1])
-        if i[1][0] < 0:
-            i[1][0] = i[1][0]* -1
+        #if i[1][0] < 0:
+            #i[1][0] = i[1][0]* -1
+            #i[1][0] = 999
         i[0] = round(i[0],2)
+    print(lst[3][0])
+    print("\n")
+    print(lst[3][1])
     return lst
     
     
