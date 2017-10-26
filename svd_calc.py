@@ -10,12 +10,12 @@ import SVD
 import data
 import numpy as np
 M = data.M.todense()
-U,sigma,V = SVD.svd(M)
+U, sigma, V = SVD.svd(M)
 #left = np.dot(U,sigma)
 
-print(M[0])
-print("\n")
+print M[0]
+print "\n"
 #print(np.dot(left,M)[0])
 
-abc2 = np.dot(np.dot(U,sigma),V[:943,:])[0]
-print(abc2)
+abc2 = np.dot(np.dot(U, sigma), V[:943, :])[0]
+print abc2
