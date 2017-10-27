@@ -26,9 +26,9 @@ def get_list(M_symmetric):
             #i[1][0] = i[1][0]* -1
             #i[1][0] = 999
         i[0] = round(i[0], 2)
-    print lst[3][0]
-    print "\n"
-    print lst[3][1]
+    print(lst[3][0])
+    print("\n")
+    print(lst[3][1])
     return lst
 
 def svd(M):
