@@ -8,26 +8,21 @@ Created on Mon Oct 30 10:48:56 2017
 # remember to add back mean_array before returning
 import data
 import numpy as np
+from math import sqrt
 
 M = np.array(data.M.todense())
 
 print(M[:,:1])
 mean_array = M.mean(0)
-
-# Handling Strict and generous raters
-for i in range(len(M)):
-    for j in range(len(M[i])):
-        if( M[i][j] != 0 ):
-            M[i][j] = M[i][j] - mean_array[j]
-
-
-sim = {}
+sums = {}
+for i in range(len(M.T)):
+    sums[i] = sqrt(np.sum(M[: , i:i+1]**2))
+# Reduce by mean and normalize M column wise
 for i in range(len(M[1])):
-    summed = 0
-    if (i,i+1) not in sim:
-        for j in range(len(M)):
-            summed = summed + M[j][i] * M[j][i+1] 
-
+    for j in range(len(M)):
+        if( M[j][i] != 0):
+            M[j][i] = (M[j][i] - mean_array[i]) / sums[i]
+cosine_sim = M.T * M
 
 #Use formula and return value
 row = 3
