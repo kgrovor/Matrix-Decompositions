@@ -50,7 +50,7 @@ def svd(M):
 
     V = V.T
 
-    sigma = np.zeros((len(Ulist), len(Ulist)))
+    sigma = np.zeros((len(Ulist), len(Vlist)))
 
     for i in range(len(Ulist)):
         sigma[i][i] = Ulist[i][0]**0.5

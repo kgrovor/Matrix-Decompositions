@@ -11,28 +11,33 @@ import data
 from numpy import linalg as l
 import numpy as np
 M = data.M.todense()
-print(M)
+print(M[:10,:10])
+#print(M)
 mean=np.squeeze(np.asarray(np.true_divide(M.sum(1),(M!=0).sum(1))))
 
 for i in range(M.shape[0]):
     for j in range(M.shape[1]):
         if M[i,j]!=0:
             M[i,j]=M[i,j]-mean[i]
-print(M)
-print(sum(M.T))
+#print(M)
+#print(sum(M.T))
 
 U, sigma, V = SVD.svd(M)
 #left = np.dot(U,sigma)
 
 s,v,d = l.svd(M)
 
+y=l.multi_dot([U,sigma,V])
 
+for i in range(M.shape[0]):
+    for j in range(M.shape[1]):
+        if M[i,j]!=0:
+            y[i,j]=y[i,j]+mean[i]
 
 print("\n")
-print(U[0,:20])
+#print(x[:10,:10])
 print("\n")       
-print(s[0,:20])
-
+print(y[:10,:10])
 #print(U)
 print("\n")
 #print(np.dot(left,M)[0])
