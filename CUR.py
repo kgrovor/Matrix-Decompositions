@@ -9,8 +9,10 @@ import SVD
 from numpy import linalg as l
 import data
 import numpy as np
+import math
+import errors
 
-def cur(M):
+def cur(M,e):
     """
     CUR decomposition of M
     """
@@ -18,7 +20,7 @@ def cur(M):
     r= 10
     M = data.M.todense()
     print(M.shape)
-    temp = np.squeeze(np.asarray(np.sum(np.square(M))))
+    temp = np.squeeze(np.asarray(np.sum(np.square(M),axis=0)))
     
     col_prob=temp/float(sum(temp))
     temp = np.squeeze(np.asarray(np.sum(np.square(M),axis=1)))
@@ -26,11 +28,11 @@ def cur(M):
     rows = np.random.choice( len(row_prob), r,replace=False, p=row_prob)    
     cols = np.random.choice( len(col_prob), r, replace=False , p=col_prob)  
 
-    C=M[rows,:] 
-    R=M[:,cols]
+    R=M[rows,:] 
+    C=M[:,cols]
     W=M[rows[:, None], cols]
 
-    S, V, D = SVD.svd(W)
+    S, V, D = SVD.svd_retained_energy(W,math.sqrt(e))
     product=[D.T, l.matrix_power(l.pinv(V),2), S.T]
     print(D.T.shape)
     print(l.matrix_power(l.pinv(V),2).shape)
@@ -39,12 +41,22 @@ def cur(M):
         
     return C,U,R
 
-C,U,R=cur(data.M.todense())
-print(C)
-print("\n")
-print("\n")
-print(U)
-print("\n")
-print("\n")
-print(R)
-print("\n")
+
+
+C,U,R=cur(data.M.todense(),1)
+print(C.shape)
+print(U.shape)
+print(R.shape)
+
+y=l.multi_dot([C,U,R])
+print(y[:5,:5])
+errors.calc_error(y)
+#print(C)
+#print("\n")
+#print("\n")
+#print(U)
+#print("\n")
+#print("\n")
+#print(R)
+#print("\n")
+

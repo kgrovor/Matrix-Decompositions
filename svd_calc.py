@@ -35,7 +35,9 @@ for i in range(M.shape[0]):
             y[i,j]=y[i,j]+mean[i]
 
 
-errors.calc_error(y)
+#errors.calc_error(y)
+
+
 #print(np.dot(left,M)[0])
 
 #abc2 = np.dot(np.dot(U, sigma), V[:943, :])[0]

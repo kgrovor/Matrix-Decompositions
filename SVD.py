@@ -72,9 +72,8 @@ def svd(M):
 
     return U, sigma, V
 
-def svd_retained_energy(e):
+def svd_retained_energy(M,e):
     
-    M = data.M.todense()
     mean=np.squeeze(np.asarray(np.true_divide(M.sum(1),(M!=0).sum(1))))
     
     for i in range(M.shape[0]):
@@ -84,7 +83,7 @@ def svd_retained_energy(e):
     U, sigma, V = svd(M)
         
     if (e<1):
-
+        
         diag = np.sum(np.diagonal(sigma)**2)
         energy = e*(diag)
         singulars = np.diagonal(sigma)
@@ -109,11 +108,10 @@ def svd_retained_energy(e):
         for j in range(M.shape[1]):
             if M[i,j]!=0:
                 y[i,j]=y[i,j]+mean[i]
-    errors.calc_error(y)
     return U, sigma, V
 
 #svd_retained_energy(data.M)
 
 
-svd_retained_energy(1)
-svd_retained_energy(0.9)
+#svd_retained_energy(1)
+#svd_retained_energy(0.9)

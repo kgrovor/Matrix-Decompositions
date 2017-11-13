@@ -88,44 +88,44 @@ def item_item_base():
     return base_item
    
     
-
+#
 errors.calc_error(user_user_collab())
 errors.calc_error(item_item_collab())
 errors.calc_error(user_user_base())
 errors.calc_error(item_item_base())
 
 
-def find_nearest(user,movie):
-    arr = user_sim[user]
-    near = []
-    arr = np.abs(arr-arr[movie])
-    arr = np.delete(arr,movie)
-    for i in range(850):
-        temp = arr.argmin()
-        near.append(temp)
-        arr = np.delete(arr,temp) 
-    return near
-    
-    
-    
-def collab_rating(user,movie):
-    tops = find_nearest(user,movie)
-    count = 0
-    tot = 0
-    flag = 1
-    denominator = 0
-    for i in tops:
-        if M[user][i] > 0:
-            count = count + 1
-            if count > 41:
-                break
-            tot = tot + np.abs(cosine_sim[movie][i]) * (M[user][i] * sums[i])
-            denominator = np.abs(cosine_sim[movie][i]) + denominator
-            flag = 0
-    if(flag == 1):
-        denominator = 1
-    tot = tot/denominator
-    return (tot + mean_array[user]) 
+#def find_nearest(user,movie):
+#    arr = user_sim[user]
+#    near = []
+#    arr = np.abs(arr-arr[movie])
+#    arr = np.delete(arr,movie)
+#    for i in range(850):
+#        temp = arr.argmin()
+#        near.append(temp)
+#        arr = np.delete(arr,temp) 
+#    return near
+#    
+#    
+#    
+#def collab_rating(user,movie):
+#    tops = find_nearest(user,movie)
+#    count = 0
+#    tot = 0
+#    flag = 1
+#    denominator = 0
+#    for i in tops:
+#        if M[user][i] > 0:
+#            count = count + 1
+#            if count > 41:
+#                break
+#            tot = tot + np.abs(cosine_sim[movie][i]) * (M[user][i] * sums[i])
+#            denominator = np.abs(cosine_sim[movie][i]) + denominator
+#            flag = 0
+#    if(flag == 1):
+#        denominator = 1
+#    tot = tot/denominator
+#    return (tot + mean_array[user]) 
 
 
         
