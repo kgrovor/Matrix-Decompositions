@@ -9,6 +9,7 @@ import SVD
 from numpy import linalg as l
 import data
 import numpy as np
+import math
 
 def cur(M,e):
     """
@@ -30,7 +31,7 @@ def cur(M,e):
     R=M[:,cols]
     W=M[rows[:, None], cols]
 
-    S, V, D = SVD.svd_retained_energy(W,e)
+    S, V, D = SVD.svd_retained_energy(W,math.sqrt(e))
     product=[D.T, l.matrix_power(l.pinv(V),2), S.T]
     print(D.T.shape)
     print(l.matrix_power(l.pinv(V),2).shape)
@@ -40,12 +41,12 @@ def cur(M,e):
     return C,U,R
 
 
-C,U,R=cur(data.M.todense())
-print(C)
-print("\n")
-print("\n")
-print(U)
-print("\n")
-print("\n")
-print(R)
-print("\n")
+#C,U,R=cur(data.M.todense(),1)
+#print(C)
+#print("\n")
+#print("\n")
+#print(U)
+#print("\n")
+#print("\n")
+#print(R)
+#print("\n")

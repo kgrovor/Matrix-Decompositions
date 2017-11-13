@@ -115,5 +115,5 @@ def svd_retained_energy(e):
 #svd_retained_energy(data.M)
 
 
-svd_retained_energy(1)
-svd_retained_energy(0.9)
+#svd_retained_energy(1)
+#svd_retained_energy(0.9)
