@@ -10,7 +10,7 @@ from numpy import linalg as l
 import data
 import numpy as np
 
-def cur(M,e):
+def cur(M):
     """
     CUR decomposition of M
     """
@@ -30,7 +30,7 @@ def cur(M,e):
     R=M[:,cols]
     W=M[rows[:, None], cols]
 
-    S, V, D = SVD.svd_retained_energy(W,e)
+    S, V, D = SVD.svd(W)
     product=[D.T, l.matrix_power(l.pinv(V),2), S.T]
     print(D.T.shape)
     print(l.matrix_power(l.pinv(V),2).shape)
@@ -38,7 +38,6 @@ def cur(M,e):
     U=l.multi_dot(product)
         
     return C,U,R
-
 
 C,U,R=cur(data.M.todense())
 print(C)
