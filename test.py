@@ -19,7 +19,7 @@ user_cols = ['user id', 'age', 'gender', 'occupation', 'zip code']
 #importing the data files onto dataframes
 users = pd.read_csv('ml-100k/u.user', sep='|', names=user_cols, encoding='latin-1')
 item = pd.read_csv('ml-100k/u.item', sep='|', names=item_cols, encoding='latin-1')
-data = pd.read_csv('ml-100k/u1.base', sep='\t', names=data_cols, encoding='latin-1')
+data = pd.read_csv('ml-100k/u1.test', sep='\t', names=data_cols, encoding='latin-1')
 
 #==============================================================================
 #  Creating the Adjacency matrix M with rows as users and columns as movies

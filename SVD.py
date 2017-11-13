@@ -7,7 +7,7 @@ Created on Thu Oct 19 12:17:26 2017
 """
 #To compare to actual SVD run "u,s,v = l.svd(M.todense())"
 
-import data
+
 from numpy import linalg as l
 import numpy as np
 #def svd(M):
@@ -26,16 +26,14 @@ def get_list(M_symmetric):
             #i[1][0] = i[1][0]* -1
             #i[1][0] = 999
         i[0] = round(i[0], 2)
-    print(lst[3][0])
-    print("\n")
-    print(lst[3][1])
+
     return lst
 
 def svd(M):
     """
     Singular value decomposition of M
     """
-    M = data.M.todense()
+
     Ulist = get_list(np.dot(M, M.T))
     Vlist = get_list(np.dot(M.T, M))
     U = np.zeros((len(Ulist[0][1]), len(Ulist)))
@@ -53,8 +51,22 @@ def svd(M):
     V = V.T
 
     sigma = np.zeros((len(Ulist), len(Ulist)))
+
     for i in range(len(Ulist)):
         sigma[i][i] = Ulist[i][0]**0.5
+
+    for i in range(len(sigma)):
+        temp = np.dot(M,np.matrix(V[i]).T)
+        temp_U = np.matrix(U[:,i]).T
+        flag = False
+        for j in range(len(temp)):
+            if temp_U[j] !=0.0:
+                if temp[j]/temp_U[j] <0.0 :
+                    flag=True
+                    break  
+        if flag :
+            for k in range(len(U[:,i])):
+                U[k][i]=-1*U[k][i]
     return U, sigma, V
 
 def svd_retained_energy(M):

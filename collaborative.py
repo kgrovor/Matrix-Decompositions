@@ -3,30 +3,80 @@
 
 import data
 import numpy as np
-from math import sqrt
+import errors
 
 M = np.array(data.M.todense())
 
-
-mean_array = M.mean(1)
-sums = {}
+M_norm= np.zeros((M.shape[0], M.shape[1]))
+mean_array=np.squeeze(np.asarray(np.true_divide(M.sum(1),(M!=0).sum(1))))
 
 # Reduce by mean and normalize M column wise
-for i in range(len(M[1])):
-    for j in range(len(M)):
-        if( M[j][i] != 0):
-            M[j][i] = (M[j][i] - mean_array[j]) 
-for i in range(len(M.T)):
-    sums[i] = sqrt(np.sum(M[: , i:i+1]**2))
-for i in range(len(M[1])):
-    for j in range(len(M)):
-        if( M[j][i] != 0):
-            M[j][i] = (M[j][i]) / sums[i] 
+for i in range(M.shape[1]):
+    for j in range(M.shape[0]):
+        if( M[j,i] != 0):
+            M_norm[j,i] = (M[j,i] - mean_array[j]) 
 
-cosine_sim = np.dot(M.T, M)
+
+sum_u=np.sqrt(np.squeeze(np.asarray(np.sum(np.square(M),axis=1))))
+sum_i=np.sqrt(np.squeeze(np.asarray(np.sum(np.square(M),axis=0))))
+#print(sums)
+
+M_u=(M_norm.T/sum_u).T
+M_i=(M_norm/sum_i)
+
+#print(M[0,:])
+item_sim = np.dot(M_i.T, M_i)
+user_sim = np.dot(M_u,M_u.T)
+item_sim[item_sim < 0] = 0
+user_sim[user_sim < 0] = 0
+
+collab_user = np.zeros((M.shape[0], M.shape[1]))
+for i in range(M.shape[0]):
+    for j in range(M.shape[1]):
+        collab_user[i,j]=np.dot(user_sim[i], M[:,j])/np.sum(user_sim[i])
+collab_item = np.zeros((M.shape[0], M.shape[1]))
+for i in range(M.shape[0]):
+    for j in range(M.shape[1]):
+        collab_item[i,j]=np.dot(item_sim[j], M[i,:])/np.sum(item_sim[j])
+
+mean_u=np.squeeze(np.asarray(np.true_divide(M.sum(1),(M!=0).sum(1))))
+mean_i=np.squeeze(np.asarray(np.true_divide(M.T.sum(1),(M.T!=0).sum(1))))
+mean_m=np.mean( M[np.nonzero(M)] )
+base = np.zeros((M.shape[0], M.shape[1]));
+base=((base+mean_m+mean_i).T+mean_u).T
+M_base=M-base
+
+base_user = np.zeros((M.shape[0], M.shape[1]))
+for i in range(M.shape[0]):
+    for j in range(M.shape[1]):
+        base_user[i,j]=np.dot(user_sim[i], M_base[:,j])/np.sum(user_sim[i])
+base_item = np.zeros((M.shape[0], M.shape[1]))
+for i in range(M.shape[0]):
+    for j in range(M.shape[1]):
+        base_item[i,j]=np.dot(item_sim[j], M_base[i,:])/np.sum(item_sim[j])
+
+base_user=base_user+base
+base_item=base_item+base
+'''
+print(M[0,:])
+print(M_norm[0,:])
+print(M_u[0,:])
+print(M_i[0,:])
+print(collab_user[0,:])
+print("\n")
+print(collab_item[0,:])
+print(base_user[0,:])
+print("\n")
+print(base_item[0,:])
+'''
+errors.calc_error(collab_user)
+errors.calc_error(collab_item)
+errors.calc_error(base_user)
+errors.calc_error(base_item)
+
 
 def find_nearest(user,movie):
-    arr = cosine_sim[user]
+    arr = user_sim[user]
     near = []
     arr = np.abs(arr-arr[movie])
     arr = np.delete(arr,movie)
