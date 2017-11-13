@@ -10,6 +10,8 @@ Created on Thu Oct 19 12:17:26 2017
 
 from numpy import linalg as l
 import numpy as np
+import data
+import errors
 #def svd(M):
 
 def get_list(M_symmetric):
@@ -67,26 +69,51 @@ def svd(M):
         if flag :
             for k in range(len(U[:,i])):
                 U[k][i]=-1*U[k][i]
+
     return U, sigma, V
 
-def svd_retained_energy(M):
+def svd_retained_energy(e):
+    
+    M = data.M.todense()
+    mean=np.squeeze(np.asarray(np.true_divide(M.sum(1),(M!=0).sum(1))))
+    
+    for i in range(M.shape[0]):
+        for j in range(M.shape[1]):
+            if M[i,j]!=0:
+                M[i,j]=M[i,j]-mean[i]
     U, sigma, V = svd(M)
-    diag = np.sum(np.diagonal(sigma)**2)
-    ninety = .9*(diag)
-    singulars = np.diagonal(sigma)
-    i = None
-    for i in range(len(singulars)-1, 0, -1):
-        if(diag - singulars[i]**2 < ninety):
-            break
-        else:
-            diag = diag - singulars[i]**2
+        
+    if (e<1):
 
-
-    sigma = sigma[0:i+1, 0:i+1]
-    U = U[::, 0:i+1]
-    V = V[0:i+1, ::]
+        diag = np.sum(np.diagonal(sigma)**2)
+        energy = e*(diag)
+        singulars = np.diagonal(sigma)
+        i = None
+        for i in range(len(singulars)-1, 0, -1):
+            if(diag - singulars[i]**2 < energy):
+                break
+            else:
+                diag = diag - singulars[i]**2
+    
+    
+        sigma = sigma[0:i+1, 0:i+1]
+        U = U[::, 0:i+1]
+        V = V[0:i+1, ::]
     #print(diag)
     #print(np.sum(np.diagonal(U)))
+    
+    
+    y=l.multi_dot([U,sigma,V])
+    
+    for i in range(M.shape[0]):
+        for j in range(M.shape[1]):
+            if M[i,j]!=0:
+                y[i,j]=y[i,j]+mean[i]
+    errors.calc_error(y)
     return U, sigma, V
 
 #svd_retained_energy(data.M)
+
+
+svd_retained_energy(1)
+svd_retained_energy(0.9)
