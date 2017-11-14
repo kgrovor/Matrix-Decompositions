@@ -102,16 +102,36 @@ def svd_retained_energy(M,e):
     #print(np.sum(np.diagonal(U)))
     
     
-    y=l.multi_dot([U,sigma,V])
-    
+    Y=l.multi_dot([U,sigma,V])
     for i in range(M.shape[0]):
         for j in range(M.shape[1]):
-            if M[i,j]!=0:
-                y[i,j]=y[i,j]+mean[i]
+                Y[i,j]=Y[i,j]+mean[i]
+    return U, sigma, V, Y
+
+def svd_for_cur(M,e):
+    
+    U, sigma, V = svd(M)
+        
+    if (e<1):
+        
+        diag = np.sum(np.diagonal(sigma)**2)
+        energy = e*(diag)
+        singulars = np.diagonal(sigma)
+        i = None
+        for i in range(len(singulars)-1, 0, -1):
+            if(diag - singulars[i]**2 < energy):
+                break
+            else:
+                diag = diag - singulars[i]**2
+    
+    
+        sigma = sigma[0:i+1, 0:i+1]
+        U = U[::, 0:i+1]
+        V = V[0:i+1, ::]
+
     return U, sigma, V
-
-#svd_retained_energy(data.M)
-
-
-#svd_retained_energy(1)
-#svd_retained_energy(0.9)
+    
+#U, V, S, Y= svd_retained_energy(data.M.todense(),1)
+#errors.calc_error(Y)
+#U, V, S, Y= svd_retained_energy(data.M.todense(),0.9)
+#errors.calc_error(Y)

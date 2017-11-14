@@ -8,40 +8,70 @@ import SVD
 import data
 import CUR
 import collaborative
+import errors
+import data
 
 start = time.time()
-SVD.svd_retained_energy(1)
+U,sigma,V,Y=SVD.svd_retained_energy(data.M.todense(),1)
 end = time.time()
 svd_time = end - start
-print("\n SVD Runtime is: ", svd_time)
-
+print("SVD")
+errors.calc_error(Y)
+print("Runtime: ", svd_time)
+print("\n\n")
 start = time.time()
-SVD.svd_retained_energy(0.9)
+U,sigma,V,Y=SVD.svd_retained_energy(data.M.todense(),0.9)
 end = time.time()
 svdret_time = end - start
-print("\n SVD retained energy runtime is: ", svd_time)
+print("SVD with 90% retained energy")
+errors.calc_error(Y)
+print("\n Runtime: ", svd_time)
 
 start = time.time()
-CUR.cur(data.M.todense(),1)
+C,U,R,Y=CUR.cur_without_repeat(data.M.todense(),1)
 end = time.time()
 cur_time = end - start
-print("\n CUR runtime is: ", cur_time)
+print("CUR without repetition")
+errors.calc_error(Y)
+print("\n Runtime: ", cur_time)
 
 start = time.time()
-CUR.cur(data.M.todense(),90)
+C,U,R,Y=CUR.cur_with_repeat(data.M.todense(),90)
 end = time.time()
 curret_time = end - start
-print("\n CUR retained energy runtime is: ", curret_time)
+print("CUR with repetition")
+errors.calc_error(Y)
+print("\n Runtime: ", curret_time)
 
 start = time.time()
-collaborative.item_item_collab()
+Y=collaborative.user_user_collab()
 end = time.time()
 collab_time = end - start
-print("\n Collaborative ranking runtime is: ", collab_time)
+print("User - User Collaborative")
+errors.calc_error(Y)
+print("\n Runtime: ", collab_time)
 
 start = time.time()
-collaborative.item_item_base()
+Y=collaborative.item_item_collab()
+end = time.time()
+collab_time = end - start
+print("Item - Item Collaborative")
+errors.calc_error(Y)
+print("\n Runtime: ", collab_time)
+
+start = time.time()
+Y=collaborative.user_user_base()
 end = time.time()
 collabbase_time = end - start
-print("\n Collaborative baseline ranking runtime is: ", collabbase_time)
+print("User - User Collaborative with Baseline Approach")
+errors.calc_error(Y)
+print("\n Runtime: ", collabbase_time)
+
+start = time.time()
+Y=collaborative.item_item_base()
+end = time.time()
+collabbase_time = end - start
+print("Item - Item Collaborative with Baseline Approach")
+errors.calc_error(Y)
+print("\n Runtime: ", collabbase_time)
 

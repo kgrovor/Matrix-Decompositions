@@ -15,7 +15,7 @@ for i in range(M.shape[1]):
     for j in range(M.shape[0]):
         if( M[j,i] != 0):
             M_norm[j,i] = (M[j,i] - mean_array[j]) 
-
+M=M_norm
 
 def user_user_collab():
     sum_u=np.sqrt(np.squeeze(np.asarray(np.sum(np.square(M),axis=1))))
@@ -28,6 +28,9 @@ def user_user_collab():
         for j in range(M.shape[1]):
             collab_user[i,j]=np.dot(user_sim[i], M[:,j])/np.sum(user_sim[i])
 
+    for i in range(M.shape[1]):
+        for j in range(M.shape[0]):
+                collab_user[j,i] = (collab_user[j,i] + mean_array[j]) 
     return collab_user            
 
     
@@ -41,6 +44,10 @@ def item_item_collab():
     for i in range(M.shape[0]):
         for j in range(M.shape[1]):
             collab_item[i,j]=np.dot(item_sim[j], M[i,:])/np.sum(item_sim[j])
+
+    for i in range(M.shape[1]):
+        for j in range(M.shape[0]):
+                collab_item[j,i] = (collab_item[j,i] + mean_array[j]) 
 
     return collab_item
 
@@ -64,6 +71,9 @@ def user_user_base():
             base_user[i,j]=np.dot(user_sim[i], M_base[:,j])/np.sum(user_sim[i])
     base_user=base_user+base
     
+    for i in range(M.shape[1]):
+        for j in range(M.shape[0]):
+                base_user[j,i] = (base_user[j,i] + mean_array[j])
     return base_user
     
 def item_item_base():
@@ -84,15 +94,19 @@ def item_item_base():
         for j in range(M.shape[1]):
             base_item[i,j]=np.dot(item_sim[j], M_base[i,:])/np.sum(item_sim[j])
     base_item=base_item+base
-
+    
+    for i in range(M.shape[1]):
+          for j in range(M.shape[0]):
+                  base_item[j,i] = (base_item[j,i] + mean_array[j])
+                
     return base_item
    
     
 #
-errors.calc_error(user_user_collab())
-errors.calc_error(item_item_collab())
-errors.calc_error(user_user_base())
-errors.calc_error(item_item_base())
+#errors.calc_error(user_user_collab())
+#errors.calc_error(item_item_collab())
+#errors.calc_error(user_user_base())
+#errors.calc_error(item_item_base())
 
 
 #def find_nearest(user,movie):
