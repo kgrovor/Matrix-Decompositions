@@ -30,15 +30,15 @@ def calc_error(M):
     M[M_test==0]=0
     k=100
     precision=0.0
-    Pred=np.argsort(M)[:,:k]
-    Act=np.argsort(M_test)[:,:k]
+    Pred=np.argsort(-M)[:,:k]
+    Act=np.argsort(-M_test)[:,:k]
 
     for i in range(Pred.shape[0]):
         for j in Pred[i,:]:
-            if (j in Act[i]):
-                precision=precision+3
+            if (j in Act[i,:]):
+                precision=precision+1
                 
-    precision=precision/k/Pred.shape[0]
+    precision=precision/Pred.shape[0]
     print("Precision on top ",k," : ",precision*100,"%")
     return 0
 
