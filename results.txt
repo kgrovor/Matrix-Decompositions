@@ -1,67 +1,39 @@
-SVD
-RMSE :  1.09400332472
-Spearman Result : 
-        Correlation :  0.329258779058 
-        Result :  0.0
-Precision on top  100  :  91.93899782135077 %
-Runtime:  48.85302472114563  s
-
-
-
-SVD with 90% retained energy
-RMSE :  1.08869101212
-Spearman Result : 
-        Correlation :  0.333548089291 
-        Result :  0.0
-Precision on top  100  :  90.84967320261438 %
-Runtime:  48.85302472114563  s
-
-
-
-CUR without repetition
-RMSE :  210.99285501
-Spearman Result : 
-        Correlation :  0.0106333213545 
-        Result :  0.132651610911
-Precision on top  100  :  74.94553376906318 %
-Runtime:  2.5057930946350098  s
-
-
-
-CUR with repetition
-RMSE :  379.791514239
-Spearman Result : 
-        Correlation :  0.00686099836673 
-        Result :  0.331925647117
-Precision on top  100  :  75.38126361655773 %
-Runtime:  2.4504730701446533  s
-
-
-
-User - User Collaborative
-RMSE :  1.04421787082
-Spearman Result : 
-        Correlation :  0.398014180972 
-        Result :  0.0
-Precision on top  100  :  93.02832244008714 %
-Runtime:  18.780550718307495  s
-
-
-
 Collaborative
 RMSE :  1.05245413956
-Spearman Result : 
-        Correlation :  0.37791208407 
-        Result :  0.0
+Spearman Correlation Coefficient :  98.2396927613 %
 Precision on top  100  :  95.20697167755992 %
-Runtime:  14.843134880065918  s
-
-
+Runtime:  13.793294191360474  s
 
 Collaborative with Baseline Approach
 RMSE :  1.06094871313
-Spearman Result : 
-        Correlation :  0.392597041499 
-        Result :  0.0
+Spearman Correlation Coefficient :  98.2177713281 %
 Precision on top  100  :  93.68191721132898 %
-Runtime:  14.829549074172974  s 
+Runtime:  14.761701345443726  s
+
+SVD
+RMSE :  1.09400332472
+Spearman Correlation Coefficient :  98.1125472028 %
+Precision on top  100  :  91.93899782135077 %
+Runtime:  37.757041215896606  s
+
+SVD with 90% retained energy
+RMSE :  1.08869101212
+Spearman Correlation Coefficient :  98.1600897077 %
+Precision on top  100  :  90.84967320261438 %
+Runtime:  36.58279871940613  s
+
+CUR without repetition
+RMSE :  1.15041023133
+Spearman Correlation Coefficient :  98.1515441193 %
+Precision on top  100  :  90.6318082788671 %
+Runtime:  38.94882893562317  s
+
+CUR with repetition
+RMSE :  1.1636745726
+Spearman Correlation Coefficient :  98.136874027 %
+Precision on top  100  :  91.72113289760348 %
+Runtime:  38.93501543998718  s
+
+
+
+

@@ -25,7 +25,7 @@ end = time.time()
 svdret_time = end - start
 print("SVD with 90% retained energy")
 errors.calc_error(Y)
-print("Runtime: ", svd_time," s")
+print("Runtime: ", svdret_time," s")
 print("\n\n")
 
 start = time.time()
@@ -34,7 +34,7 @@ end = time.time()
 cur_time = end - start
 print("CUR without repetition")
 errors.calc_error(Y)
-print("Runtime: ", cur_time," s")
+print("Runtime: ", svdret_time + cur_time," s")
 print("\n\n")
 
 start = time.time()
@@ -43,7 +43,7 @@ end = time.time()
 curret_time = end - start
 print("CUR with repetition")
 errors.calc_error(Y)
-print("Runtime: ", curret_time," s")
+print("Runtime: ",svdret_time + curret_time," s")
 print("\n\n")
 
 #start = time.time()
