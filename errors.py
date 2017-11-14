@@ -13,14 +13,11 @@ def rmse(predictions, targets):
     return np.sqrt(((predictions - targets) ** 2).mean())
 
 def spear(predictions, targets):
-<<<<<<< HEAD
     return np.mean(1-(6*np.sum(np.square(predictions - targets),axis=1)/predictions.shape[1]/((predictions.shape[1])**2 - 1)))
-=======
+
     """
     Implementation of Spearmans correlation
     """
-    return 1-(6*np.sum((predictions - targets) ** 2)/len(predictions)/(len(predictions)**2 - 1))
->>>>>>> a769b47df56060a7dd303ab94cb21d134374f438
 
 def calc_error(M):
     """
@@ -39,7 +36,7 @@ def calc_error(M):
     spm=spear(Act,Pred)
     print ("RMSE : ", rms)
 #    print(spear(predicted,actual))
-    print("Spearman Correlation Coefficient : ",spm*100)
+    print("Spearman Correlation Coefficient : ",spm*100,"%")
     
     k=100
     precision=0.0
