@@ -1,20 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Nov 13 15:26:38 2017
-
-@author: bhavathi
+Error calculating functions implementations
 """
 import numpy as np
 import test
 
 def rmse(predictions, targets):
+    """
+    Root mean square error
+    """
     return np.sqrt(((predictions - targets) ** 2).mean())
 
 def spear(predictions, targets):
+<<<<<<< HEAD
     return np.mean(1-(6*np.sum(np.square(predictions - targets),axis=1)/predictions.shape[1]/((predictions.shape[1])**2 - 1)))
+=======
+    """
+    Implementation of Spearmans correlation
+    """
+    return 1-(6*np.sum((predictions - targets) ** 2)/len(predictions)/(len(predictions)**2 - 1))
+>>>>>>> a769b47df56060a7dd303ab94cb21d134374f438
 
 def calc_error(M):
+    """
+    Method to enumerate errors and implementation of precision on top k
+    """
     M_test=np.matrix(test.M.todense())
     M=np.matrix(M[:M_test.shape[0],:M_test.shape[1]])
     actual=np.squeeze(np.asarray(M_test[np.nonzero(M_test)]))

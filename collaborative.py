@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+""" Includes all collaborative rating scheme implementations"""
 import data
 import numpy as np
 
@@ -34,6 +35,7 @@ def user_user_collab():
 
     
 def item_item_collab():
+    """ Performs item to item collaborative reccomendations. No need to pass data Matrix as it takes the original from the data.py to avoid ambiguity"""
     sum_i=np.sqrt(np.squeeze(np.asarray(np.sum(np.square(M),axis=0))))
     M_i=(M_norm/sum_i)
     item_sim = np.dot(M_i.T, M_i)
@@ -76,6 +78,7 @@ def user_user_base():
     return base_user
     
 def item_item_base():
+    """ Adds a baseline measure to the reporting on the item to item collaborative effort to improve predicted ranking"""
     sum_i=np.sqrt(np.squeeze(np.asarray(np.sum(np.square(M),axis=0))))
     M_i=(M_norm/sum_i)
     item_sim = np.dot(M_i.T, M_i)

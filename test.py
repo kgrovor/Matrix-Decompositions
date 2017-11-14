@@ -1,13 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Oct 18 15:03:08 2017
-
-@author: kshitij
-"""
 import pandas as pd
 import scipy.sparse as sps
-
+"""Takes input from the Test data and formats it in a way analogous to that of the training set. i.e a matrix M of users as rows and movies as columns"""
 #column headers for the dataset
 data_cols = ['user_id', 'movie_id', 'rating', 'timestamp']
 item_cols = ['movie id', 'movie title', 'release date', 'video release date', 'IMDb URL',
