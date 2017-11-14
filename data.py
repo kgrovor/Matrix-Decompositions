@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Oct 18 15:03:08 2017
-
-@author: kshitij
+Reads data from training set and formats it into a sparse matrix of dimensions users x movies.
 """
 import pandas as pd
 import scipy.sparse as sps

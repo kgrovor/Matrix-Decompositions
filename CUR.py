@@ -12,7 +12,7 @@ import numpy as np
 
 def cur_without_repeat(M,e):
     """
-    CUR decomposition of M
+    CUR decomposition of M, not allowing for repeat selection of columns with retained energy e. e = .9 for 90% retain
     """
     
     r= 50
@@ -45,7 +45,7 @@ def cur_without_repeat(M,e):
 
 def cur_with_repeat(M,e):
     """
-    CUR decomposition of M
+    CUR decomposition of M, allowing for repeat selection of columns with retained energy e
     """
     
     r= 50

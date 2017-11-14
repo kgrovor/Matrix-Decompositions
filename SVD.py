@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Oct 19 12:17:26 2017
-
-@author: kshitij
+Implementation of SVD with and without retained energy
 """
-#To compare to actual SVD run "u,s,v = l.svd(M.todense())"
-
-
 from numpy import linalg as l
 import numpy as np
 
 #def svd(M):
 
 def get_list(M_symmetric):
+    """
+    Takes input of M*M.T form of a square matrix. Calculates eigenvector-eigenvalue pairs and returns them as a list of pairs sorted with respect to the eigenvalue in a descending order
+    """
     lmda, eig_vector = l.eig(M_symmetric)
     lst = []
     for i in range(len(lmda)):
@@ -72,7 +70,9 @@ def svd(M):
     return U, sigma, V
 
 def svd_retained_energy(M,e):
-    
+    """
+    Argument e decides the amount of energy to be retained. i.e .9 for 90%
+    """
     mean=np.squeeze(np.asarray(np.true_divide(M.sum(1),(M!=0).sum(1))))
     
     for i in range(M.shape[0]):
@@ -108,7 +108,9 @@ def svd_retained_energy(M,e):
     return U, sigma, V, Y
 
 def svd_for_cur(M,e):
-    
+    """
+    Implementation of SVD for use in the CUR function. 
+    """
     U, sigma, V = svd(M)
         
     if (e<1):

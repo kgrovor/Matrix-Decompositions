@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Nov 13 13:26:54 2017
+Main function which prints results of error functions along with the runtime of the respective algorithms
 """
 import time
 import SVD
@@ -46,14 +46,14 @@ errors.calc_error(Y)
 print("Runtime: ", curret_time," s")
 print("\n\n")
 
-start = time.time()
-Y=collaborative.user_user_collab()
-end = time.time()
-collab_time = end - start
-print("User - User Collaborative")
-errors.calc_error(Y)
-print("Runtime: ", collab_time," s")
-print("\n\n")
+#start = time.time()
+#Y=collaborative.user_user_collab()
+#end = time.time()
+#collab_time = end - start
+#print("User - User Collaborative")
+#errors.calc_error(Y)
+#print("Runtime: ", collab_time," s")
+#print("\n\n")
 
 start = time.time()
 Y=collaborative.item_item_collab()
