@@ -60,25 +60,25 @@ start = time.time()
 Y=collaborative.item_item_collab()
 end = time.time()
 collab_time = end - start
-print("Item - Item Collaborative")
+print("Collaborative")
 errors.calc_error(Y)
 print("Runtime: ", collab_time," s")
 print("\n\n")
 
-start = time.time()
-Y=collaborative.user_user_base()
-end = time.time()
-collabbase_time = end - start
-print("User - User Collaborative with Baseline Approach")
-errors.calc_error(Y)
-print("Runtime: ", collabbase_time," s")
-print("\n\n")
+#start = time.time()
+#Y=collaborative.user_user_base()
+#end = time.time()
+#collabbase_time = end - start
+#print("User - User Collaborative with Baseline Approach")
+#errors.calc_error(Y)
+#print("Runtime: ", collabbase_time," s")
+#print("\n\n")
 
 start = time.time()
 Y=collaborative.item_item_base()
 end = time.time()
 collabbase_time = end - start
-print("Item - Item Collaborative with Baseline Approach")
+print("Collaborative with Baseline Approach")
 errors.calc_error(Y)
 print("Runtime: ", collabbase_time," s")
 

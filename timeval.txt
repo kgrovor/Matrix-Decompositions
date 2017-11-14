@@ -1,0 +1,7 @@
+SVD - SVD Runtime is:  41.02373480796814
+
+SVD retained energy runtime is:  42.302162408828735
+
+Collaborative ranking runtime is:  14.621307134628296
+
+Collaborative baseline ranking runtime is:  14.733039140701294

@@ -1,0 +1,67 @@
+SVD
+RMSE :  1.09400332472
+Spearman Result : 
+        Correlation :  0.329258779058 
+        Result :  0.0
+Precision on top  100  :  91.93899782135077 %
+Runtime:  48.85302472114563  s
+
+
+
+SVD with 90% retained energy
+RMSE :  1.08869101212
+Spearman Result : 
+        Correlation :  0.333548089291 
+        Result :  0.0
+Precision on top  100  :  90.84967320261438 %
+Runtime:  48.85302472114563  s
+
+
+
+CUR without repetition
+RMSE :  210.99285501
+Spearman Result : 
+        Correlation :  0.0106333213545 
+        Result :  0.132651610911
+Precision on top  100  :  74.94553376906318 %
+Runtime:  2.5057930946350098  s
+
+
+
+CUR with repetition
+RMSE :  379.791514239
+Spearman Result : 
+        Correlation :  0.00686099836673 
+        Result :  0.331925647117
+Precision on top  100  :  75.38126361655773 %
+Runtime:  2.4504730701446533  s
+
+
+
+User - User Collaborative
+RMSE :  1.04421787082
+Spearman Result : 
+        Correlation :  0.398014180972 
+        Result :  0.0
+Precision on top  100  :  93.02832244008714 %
+Runtime:  18.780550718307495  s
+
+
+
+Collaborative
+RMSE :  1.05245413956
+Spearman Result : 
+        Correlation :  0.37791208407 
+        Result :  0.0
+Precision on top  100  :  95.20697167755992 %
+Runtime:  14.843134880065918  s
+
+
+
+Collaborative with Baseline Approach
+RMSE :  1.06094871313
+Spearman Result : 
+        Correlation :  0.392597041499 
+        Result :  0.0
+Precision on top  100  :  93.68191721132898 %
+Runtime:  14.829549074172974  s 
