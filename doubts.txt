@@ -1,2 +1,0 @@
-1) What does time for prediction mean for say SVD, making the SVD included? Or time for singular predictions averaged?
-2) What is precision on top K?

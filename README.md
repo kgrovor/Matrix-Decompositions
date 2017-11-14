@@ -1,6 +1,9 @@
 # Matrix-Decompositions
 
-Possible Issues -
-1) Does not take into consideration Rank of Matrix. Not a problem on this dataset. Not general enough?
-2) Could use binary search to find 90% mark
-3) Do we need to Subtract average rank given by user from his ratings BEFORE SVD?
+To run just run the main.py file with Python3
+
+Dependencies -
+1) Scikit
+2) Numpy
+3) Pandas
+

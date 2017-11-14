@@ -8,8 +8,22 @@ Welcome to Reccomender System's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-
+.. automodule:: collaborative
+   :members:
+.. automodule:: CUR
+   :members:
+.. automodule:: data
+   :members:
+.. automodule:: errors
+   :members:
+.. automodule:: main
+   :members:
+.. automodule:: errors
+   :members:
+.. automodule:: SVD
+   :members:
+.. automodule:: test
+   :members:
 
 
 Indices and tables

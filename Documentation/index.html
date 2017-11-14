@@ -1,0 +1,201 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to Reccomender System’s documentation! &#8212; Reccomender System  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-reccomender-system-s-documentation">
+<h1>Welcome to Reccomender System’s documentation!<a class="headerlink" href="#welcome-to-reccomender-system-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-collaborative"></span><p>Includes all collaborative rating scheme implementations</p>
+<dl class="function">
+<dt id="collaborative.item_item_base">
+<code class="descclassname">collaborative.</code><code class="descname">item_item_base</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collaborative.item_item_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a baseline measure to the reporting on the item to item collaborative effort to improve predicted ranking</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="collaborative.item_item_collab">
+<code class="descclassname">collaborative.</code><code class="descname">item_item_collab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collaborative.item_item_collab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs item to item collaborative reccomendations. No need to pass data Matrix as it takes the original from the data.py to avoid ambiguity</p>
+</dd></dl>
+
+<span class="target" id="module-CUR"></span><p>Created on Sun Nov 12 21:20:23 2017</p>
+<p>&#64;author: bhavathi</p>
+<dl class="function">
+<dt id="CUR.cur_with_repeat">
+<code class="descclassname">CUR.</code><code class="descname">cur_with_repeat</code><span class="sig-paren">(</span><em>M</em>, <em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#CUR.cur_with_repeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>CUR decomposition of M, allowing for repeat selection of columns with retained energy e</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="CUR.cur_without_repeat">
+<code class="descclassname">CUR.</code><code class="descname">cur_without_repeat</code><span class="sig-paren">(</span><em>M</em>, <em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#CUR.cur_without_repeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>CUR decomposition of M, not allowing for repeat selection of columns with retained energy e. e = .9 for 90% retain</p>
+</dd></dl>
+
+<span class="target" id="module-data"></span><p>Reads data from training set and formats it into a sparse matrix of dimensions users x movies.</p>
+<span class="target" id="module-errors"></span><p>Error calculating functions implementations</p>
+<dl class="function">
+<dt id="errors.calc_error">
+<code class="descclassname">errors.</code><code class="descname">calc_error</code><span class="sig-paren">(</span><em>M</em><span class="sig-paren">)</span><a class="headerlink" href="#errors.calc_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to enumerate errors and implementation of precision on top k</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="errors.rmse">
+<code class="descclassname">errors.</code><code class="descname">rmse</code><span class="sig-paren">(</span><em>predictions</em>, <em>targets</em><span class="sig-paren">)</span><a class="headerlink" href="#errors.rmse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Root mean square error</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="errors.spear">
+<code class="descclassname">errors.</code><code class="descname">spear</code><span class="sig-paren">(</span><em>predictions</em>, <em>targets</em><span class="sig-paren">)</span><a class="headerlink" href="#errors.spear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of Spearmans correlation</p>
+</dd></dl>
+
+<span class="target" id="module-main"></span><p>Main function which prints results of error functions along with the runtime of the respective algorithms</p>
+<span class="target" id="module-errors"></span><p>Error calculating functions implementations</p>
+<dl class="function">
+<dt>
+<code class="descclassname">errors.</code><code class="descname">calc_error</code><span class="sig-paren">(</span><em>M</em><span class="sig-paren">)</span></dt>
+<dd><p>Method to enumerate errors and implementation of precision on top k</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">errors.</code><code class="descname">rmse</code><span class="sig-paren">(</span><em>predictions</em>, <em>targets</em><span class="sig-paren">)</span></dt>
+<dd><p>Root mean square error</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">errors.</code><code class="descname">spear</code><span class="sig-paren">(</span><em>predictions</em>, <em>targets</em><span class="sig-paren">)</span></dt>
+<dd><p>Implementation of Spearmans correlation</p>
+</dd></dl>
+
+<span class="target" id="module-SVD"></span><p>Implementation of SVD with and without retained energy</p>
+<dl class="function">
+<dt id="SVD.get_list">
+<code class="descclassname">SVD.</code><code class="descname">get_list</code><span class="sig-paren">(</span><em>M_symmetric</em><span class="sig-paren">)</span><a class="headerlink" href="#SVD.get_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes input of M*M.T form of a square matrix. Calculates eigenvector-eigenvalue pairs and returns them as a list of pairs sorted with respect to the eigenvalue in a descending order</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="SVD.svd">
+<code class="descclassname">SVD.</code><code class="descname">svd</code><span class="sig-paren">(</span><em>M</em><span class="sig-paren">)</span><a class="headerlink" href="#SVD.svd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Singular value decomposition of M</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="SVD.svd_for_cur">
+<code class="descclassname">SVD.</code><code class="descname">svd_for_cur</code><span class="sig-paren">(</span><em>M</em>, <em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#SVD.svd_for_cur" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of SVD for use in the CUR function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="SVD.svd_retained_energy">
+<code class="descclassname">SVD.</code><code class="descname">svd_retained_energy</code><span class="sig-paren">(</span><em>M</em>, <em>e</em><span class="sig-paren">)</span><a class="headerlink" href="#SVD.svd_retained_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Argument e decides the amount of energy to be retained. i.e .9 for 90%</p>
+</dd></dl>
+
+<span class="target" id="module-test"></span></div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Reccomender System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Kshitij,Meghana,Bhavathi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
