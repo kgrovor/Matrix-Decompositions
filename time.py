@@ -9,7 +9,6 @@ import data
 import CUR
 import collaborative
 import errors
-import data
 
 start = time.time()
 U,sigma,V,Y=SVD.svd_retained_energy(data.M.todense(),1)

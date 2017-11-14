@@ -25,7 +25,7 @@ def calc_error(M):
     spm=spearm(actual,predicted)
     print ("RMSE : ", rms)
 #    print(spear(predicted,actual))
-    print("Spearman Result :","\n\tCorrelation : ",spm[0],"\n\tResult : ",spm[1])
+    print("Spearman Correlation Coefficient: ",spm[0])
     
     M[M_test==0]=0
     k=100

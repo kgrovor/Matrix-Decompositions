@@ -7,9 +7,8 @@ Created on Sun Nov 12 21:20:23 2017
 """
 import SVD
 from numpy import linalg as l
-import data
 import numpy as np
-import errors
+
 
 def cur_without_repeat(M,e):
     """
@@ -34,7 +33,7 @@ def cur_without_repeat(M,e):
     R=(M[rows,:].T/np.sqrt(r*row_prob[rows])).T
     C=M[:,cols]/np.sqrt(r*col_prob[cols])
     W=M[rows[:, None], cols]
-    S, V, D = SVD.svd_for_cur(W,e)
+    S, V, D = SVD.svd_for_cur(W,0.9)
     
     product=[D.T, l.matrix_power(l.pinv(V),2), S.T]
     U=l.multi_dot(product)
@@ -67,7 +66,7 @@ def cur_with_repeat(M,e):
     R=(M[rows,:].T/np.sqrt(r*row_prob[rows])).T
     C=M[:,cols]/np.sqrt(r*col_prob[cols])
     W=M[rows[:, None], cols]
-    S, V, D = SVD.svd_for_cur(W,e)
+    S, V, D = SVD.svd_for_cur(W,0.9)
     
     product=[D.T, l.matrix_power(l.pinv(V),2), S.T]
     U=l.multi_dot(product)

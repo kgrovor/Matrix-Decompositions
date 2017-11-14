@@ -3,7 +3,6 @@
 
 import data
 import numpy as np
-import errors
 
 M = np.array(data.M.todense())
 

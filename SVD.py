@@ -10,8 +10,7 @@ Created on Thu Oct 19 12:17:26 2017
 
 from numpy import linalg as l
 import numpy as np
-import data
-import errors
+
 #def svd(M):
 
 def get_list(M_symmetric):
