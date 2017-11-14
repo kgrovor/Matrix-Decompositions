@@ -25,10 +25,10 @@ def calc_error(M):
     spm=spearm(actual,predicted)
     print ("RMSE : ", rms)
 #    print(spear(predicted,actual))
-    print("Spearman Result :\n\t","Correlation : ",spm[0],"\n\tResult : ",spm[1])
+    print("Spearman Result :","\n\tCorrelation : ",spm[0],"\n\tResult : ",spm[1])
     
     M[M_test==0]=0
-    k=10
+    k=100
     precision=0.0
     Pred=np.argsort(M)[:,:k]
     Act=np.argsort(M_test)[:,:k]
