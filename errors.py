@@ -4,7 +4,6 @@
 Error calculating functions implementations
 """
 import numpy as np
-from scipy.stats import spearmanr as spearm
 import test
 
 def rmse(predictions, targets):
@@ -14,10 +13,11 @@ def rmse(predictions, targets):
     return np.sqrt(((predictions - targets) ** 2).mean())
 
 def spear(predictions, targets):
+    return np.mean(1-(6*np.sum(np.square(predictions - targets),axis=1)/predictions.shape[1]/((predictions.shape[1])**2 - 1)))
+
     """
     Implementation of Spearmans correlation
     """
-    return 1-(6*np.sum((predictions - targets) ** 2)/len(predictions)/(len(predictions)**2 - 1))
 
 def calc_error(M):
     """
@@ -29,17 +29,19 @@ def calc_error(M):
     predicted=np.squeeze(np.asarray(M[np.nonzero(M_test)]))
 
     rms=rmse(predicted, actual)
-    spm=spearm(actual,predicted)
+    M[M_test==0]=0
+    Pred=np.argsort(-M)
+    Act=np.argsort(-M_test)
+
+    spm=spear(Act,Pred)
     print ("RMSE : ", rms)
 #    print(spear(predicted,actual))
-    print("Spearman Correlation Coefficient: ",spm[0])
+    print("Spearman Correlation Coefficient : ",spm*100,"%")
     
-    M[M_test==0]=0
     k=100
     precision=0.0
-    Pred=np.argsort(-M)[:,:k]
-    Act=np.argsort(-M_test)[:,:k]
-
+    Pred=Pred[:,:k]
+    Act=Act[:,:k]
     for i in range(Pred.shape[0]):
         for j in Pred[i,:]:
             if (j in Act[i,:]):
@@ -48,5 +50,3 @@ def calc_error(M):
     precision=precision/Pred.shape[0]
     print("Precision on top ",k," : ",precision*100,"%")
     return 0
-
-#calc_error (data.M.todense())
